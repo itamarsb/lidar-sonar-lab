@@ -6,6 +6,8 @@ unindo eletrônica embarcada (Arduino Mega 2560, STM32, ESP32) com práticas de
 
 > Status: 🟢 Lab 01 em andamento
 
+[![CI](https://github.com/itamarsb/lidar-sonar-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/itamarsb/lidar-sonar-lab/actions/workflows/ci.yml)
+
 ## Por que este projeto
 
 Sensores de distância são a base de robótica, drones e aviônica
