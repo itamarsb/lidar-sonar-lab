@@ -1,0 +1,15 @@
+# Regras de lint fixadas no repositório, para o resultado não mudar
+# quando uma versão nova do ruff mudar os padrões.
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = [
+  "E", "W",  # pycodestyle
+  "F",       # pyflakes (erros reais: variável não usada, import faltando...)
+  "I",       # ordem dos imports
+  "EXE",     # shebang x permissão de execução
+  "PIE",     # simplificações
+  "UP",      # sintaxe moderna do Python
+  "B",       # bugs comuns
+]

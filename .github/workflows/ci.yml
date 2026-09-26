@@ -9,7 +9,7 @@ jobs:
     name: Compilar firmware (Arduino Mega 2560)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: arduino:avr:mega:cpu=atmega2560
@@ -20,11 +20,13 @@ jobs:
     name: Lint e teste dos scripts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install ruff -r tools/requirements.txt
       - run: ruff check tools/
       - name: Teste da análise com dados de exemplo
+        env:
+          MPLBACKEND: Agg
         run: python tools/analisar.py --csv tools/exemplo/medicoes_exemplo.csv

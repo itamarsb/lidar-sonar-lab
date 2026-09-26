@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Analisa as medições do Lab 01: erro, desvio padrão e comparação entre a
 distância com velocidade fixa (343 m/s) e com compensação de temperatura.
@@ -11,8 +10,6 @@ Uso:
 import argparse
 from pathlib import Path
 
-import matplotlib
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 

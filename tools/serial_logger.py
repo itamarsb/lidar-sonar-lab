@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Grava a saída CSV do Arduino em arquivo, marcando cada linha com a
 distância de referência medida com trena.
@@ -18,7 +17,8 @@ from pathlib import Path
 import serial
 
 CABECALHO = ["ms", "echo_us", "temp_c", "c_ms", "dist_fixa_cm", "dist_comp_cm"]
-SAIDA_PADRAO = Path(__file__).resolve().parent.parent / "labs/lab01-sonar-basico/resultados/medicoes.csv"
+RAIZ = Path(__file__).resolve().parent.parent
+SAIDA_PADRAO = RAIZ / "labs/lab01-sonar-basico/resultados/medicoes.csv"
 
 
 def main() -> None:
@@ -46,7 +46,7 @@ def main() -> None:
         n = 0
         while time.time() < fim:
             linha = porta.readline().decode(errors="ignore").strip()
-            if not linha or linha.startswith("#") or linha.startswith("ms,"):
+            if not linha or linha.startswith(("#", "ms,")):
                 continue
             campos = linha.split(",")
             if len(campos) != len(CABECALHO):
