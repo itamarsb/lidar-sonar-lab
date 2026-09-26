@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+.pio/
+build/
+tools/exemplo/resumo.md
+tools/exemplo/*.png
