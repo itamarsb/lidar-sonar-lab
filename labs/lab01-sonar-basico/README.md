@@ -8,7 +8,7 @@ mostrar, com dados, quanto a temperatura afeta a medição.
 ## 1. Material
 
 | Item | Origem |
-|---|---|
+|:---:|:---:|
 | Arduino Mega 2560 + cabo USB | seu acervo |
 | Sensor ultrassônico HC-SR04 | seus sensores |
 | Sensor de temperatura LM35 | kit MyLab Thomas Edison |
