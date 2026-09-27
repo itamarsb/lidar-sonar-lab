@@ -45,11 +45,11 @@ flowchart LR
 ## Estrutura
 
 ```
-labs/      um diretório por lab: firmware, roteiro, resultados
-tools/     scripts Python (coleta serial, análise)
-infra/     docker compose (Mosquitto, InfluxDB, Grafana) — a partir do Lab 03
-docs/      imagens, diagramas e decisões de projeto
-.github/   CI: compilação do firmware e lint dos scripts
+labs/      um diretório por lab: firmware, roteiro e resultados.
+tools/     scripts Python (coleta serial e análise).
+infra/     docker compose (Mosquitto, InfluxDB e Grafana) — a partir do Lab 03.
+docs/      imagens, diagramas e decisões de projeto.
+.github/   CI: compilação do firmware e lint dos scripts.
 ```
 
 ## Bancada
