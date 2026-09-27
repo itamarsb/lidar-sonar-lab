@@ -26,6 +26,7 @@ jobs:
           python-version: "3.12"
       - run: pip install ruff -r tools/requirements.txt
       - run: ruff check tools/
+      - run: python -m unittest discover -s tools -p 'test_*.py'
       - name: Teste da análise com dados de exemplo
         env:
           MPLBACKEND: Agg
