@@ -1,8 +1,8 @@
 # lidar-sonar-lab
 
 Laboratório de **mapeamento e monitoramento de ambientes com sonar e LiDAR**,
-unindo eletrônica embarcada (Arduino Mega 2560, STM32, ESP32) com práticas de
-**observabilidade e DevOps** (MQTT, séries temporais, Grafana, alertas, CI).
+unindo eletrônica embarcada (Arduino Mega 2560, STM32 e ESP32) com práticas de
+**Observabilidade e DevOps** (MQTT, séries temporais, Grafana, alertas, CI, etc).
 
 > Status: 🟢 Lab 01 em andamento
 
