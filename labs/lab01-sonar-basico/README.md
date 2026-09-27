@@ -34,7 +34,7 @@ c ≈ 331,3 + 0,606 × T   (m/s, T em °C)
 ```
 
 | Temperatura | c (m/s) | Erro a 2 m usando 343 m/s fixo |
-|---|---|---|
+|:---:|:---:|:---:|
 | 5 °C (inverno em Rio Grande) | 334,3 | ≈ +5,2 cm |
 | 20 °C | 343,4 | ≈ 0 |
 | 35 °C (verão) | 352,5 | ≈ −5,4 cm |
