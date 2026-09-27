@@ -11,9 +11,9 @@ unindo eletrônica embarcada (Arduino Mega 2560, STM32, ESP32) com práticas de
 ## Por que este projeto
 
 Sensores de distância são a base de robótica, drones e aviônica
-(altímetros, anticolisão, mapeamento). Aqui cada sensor é tratado como uma
+(altímetros, anticolisão ou mapeamento). Aqui cada sensor é tratado como uma
 **fonte de telemetria**: os dados são medidos, validados em bancada
-(osciloscópio, multímetro), analisados estatisticamente e, nas fases seguintes,
+(osciloscópio e multímetro), analisados estatisticamente e, nas fases seguintes,
 enviados a um pipeline de monitoramento com dashboards e alertas.
 
 ## Arquitetura alvo
