@@ -84,7 +84,7 @@ ms,echo_us,temp_c,c_ms,dist_fixa_cm,dist_comp_cm
 ## 5. Roteiro no osciloscópio (6022BL)
 
 | Canal | Ponta em | Configuração sugerida |
-|---|---|---|
+|:---:|:---:|:---:|
 | CH1 | TRIG (D22) | 2 V/div, trigger em borda de subida no CH1 |
 | CH2 | ECHO (D49) | 2 V/div |
 
