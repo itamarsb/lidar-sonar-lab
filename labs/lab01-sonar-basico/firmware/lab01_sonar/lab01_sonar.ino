@@ -12,7 +12,8 @@
  *   LM35     GND  -> GND
  *
  * Saída serial (USB, 115200 baud), uma linha CSV por medição:
- *   ms,echo_us,temp_c,c_ms,dist_fixa_cm,dist_comp_cm
+ *   ms,echo_us,temp_c,c_ms,dist_fixa_cm,dist_comp_cm,valid_count,timeout_count
+ *   echo_us é a mediana dos ecos válidos; 0 se os cinco disparos falharem.
  *
  *   dist_fixa_cm -> assume 343 m/s (o que a maioria dos tutoriais faz)
  *   dist_comp_cm -> usa c = 331,3 + 0,606*T (compensado pela temperatura)
@@ -50,20 +51,27 @@ uint32_t dispararEco() {
   return pulseIn(PIN_ECHO, HIGH, TIMEOUT_ECO_US);  // 0 = timeout
 }
 
-uint32_t medianaEco() {
+uint32_t medianaEco(uint8_t &validos) {
   uint32_t v[AMOSTRAS];
+  validos = 0;
   for (uint8_t i = 0; i < AMOSTRAS; i++) {
-    v[i] = dispararEco();
+    uint32_t eco = dispararEco();
+    if (eco != 0) v[validos++] = eco;
     delay(INTERVALO_ECO_MS);
   }
-  // insertion sort (N pequeno)
-  for (uint8_t i = 1; i < AMOSTRAS; i++) {
+  if (validos == 0) return 0;
+
+  // Ordena somente ecos válidos; a taxa de falhas continua registrada no CSV.
+  for (uint8_t i = 1; i < validos; i++) {
     uint32_t x = v[i];
     int8_t j = i - 1;
-    while (j >= 0 && v[j] > x) { v[j + 1] = v[j]; j--; }
+    while (j >= 0 && v[j] > x) {
+      v[j + 1] = v[j];
+      j--;
+    }
     v[j + 1] = x;
   }
-  return v[AMOSTRAS / 2];
+  return v[validos / 2];
 }
 
 void setup() {
@@ -72,8 +80,8 @@ void setup() {
   analogReference(INTERNAL1V1);
   Serial.begin(115200);
   delay(200);
-  Serial.println(F("# lab01_sonar v1.1 (Mega 2560)"));
-  Serial.println(F("ms,echo_us,temp_c,c_ms,dist_fixa_cm,dist_comp_cm"));
+  Serial.println(F("# lab01_sonar v1.2 (Mega 2560)"));
+  Serial.println(F("ms,echo_us,temp_c,c_ms,dist_fixa_cm,dist_comp_cm,valid_count,timeout_count"));
 }
 
 void loop() {
@@ -81,9 +89,10 @@ void loop() {
   if (millis() - ultimo < PERIODO_MS) return;
   ultimo = millis();
 
-  float    t    = lerTemperaturaC();
-  uint32_t echo = medianaEco();
-  float    c    = 331.3 + 0.606 * t;               // m/s
+  float t = lerTemperaturaC();
+  uint8_t validos = 0;
+  uint32_t echo = medianaEco(validos);
+  float c = 331.3 + 0.606 * t;          // m/s
 
   // distância = tempo * velocidade / 2 (ida e volta). us * m/s -> cm: fator 1e-4
   float dFixa = (echo > 0) ? echo * 343.0 * 1e-4 / 2.0 : NAN;
@@ -94,5 +103,7 @@ void loop() {
   Serial.print(t, 2);      Serial.print(',');
   Serial.print(c, 2);      Serial.print(',');
   Serial.print(dFixa, 2);  Serial.print(',');
-  Serial.println(dComp, 2);
+  Serial.print(dComp, 2);  Serial.print(',');
+  Serial.print(validos);   Serial.print(',');
+  Serial.println(AMOSTRAS - validos);
 }
