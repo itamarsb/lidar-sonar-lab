@@ -34,7 +34,7 @@ flowchart LR
 ## Roadmap
 
 | Lab | Tema | Hardware | Status |
-|---|---|---|---|
+|:---:|---|:---:|:---:|
 | [01](labs/lab01-sonar-basico/) | Sonar + compensação de temperatura + validação no osciloscópio | Mega 2560, HC-SR04, LM35 | 🟢 em andamento |
 | 02 | Sonar com *timer input capture*: `pulseIn()` × Timer4 do Mega × STM32 | Mega 2560, NUCLEO-F303RE | ⚪ planejado |
 | 03 | Radar de varredura com servo + telemetria MQTT → InfluxDB → Grafana | ESP32, servo | ⚪ planejado |
